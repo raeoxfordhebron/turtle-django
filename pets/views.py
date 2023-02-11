@@ -32,3 +32,16 @@ class TurtleViewID(View):
         finalData = json.loads(serialize("json", [turtle]))
         ## send json response
         return JsonResponse(finalData, safe=False)
+    
+    def put(self, request, id):
+        ## get the body
+        body = GetBody(request)
+        ## update turtle
+        ## ** is like JS spread operator
+        Turtle.objects.filter(id=id).update(**body)
+        ## query for turtle
+        turtle = Turtle.objects.get(id=id)
+        ## serialize and make dictionary
+        finalData = json.loads(serialize("json", [turtle]))
+        ## return json data
+        return JsonResponse(finalData, safe=False)
