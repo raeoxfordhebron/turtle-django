@@ -45,3 +45,13 @@ class TurtleViewID(View):
         finalData = json.loads(serialize("json", [turtle]))
         ## return json data
         return JsonResponse(finalData, safe=False)
+    
+    def delete(self, request, id):
+        ## query the turtle
+        turtle = Turtle.objects.get(id=id)
+        ## delete the turtle
+        turtle.delete()
+        ## serialize and dictionary update turtle
+        finalData = json.loads(serialize("json", [turtle]))
+        ## send json response
+        return JsonResponse(finalData, safe=False)
