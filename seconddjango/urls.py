@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from pets.views import TurtleView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('turtle/', TurtleView.as_view())
 ]
