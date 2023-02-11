@@ -23,3 +23,12 @@ class TurtleView(View):
         finalData = json.loads(serialize("json", [turtle]))
         return JsonResponse(finalData, safe=False)
 
+class TurtleViewID(View):
+    ## Show
+    def get(self, request, id):
+        ## get the turtle
+        turtle = Turtle.objects.get(id=id)
+        ## serialize then turn into dictionary
+        finalData = json.loads(serialize("json", [turtle]))
+        ## send json response
+        return JsonResponse(finalData, safe=False)
